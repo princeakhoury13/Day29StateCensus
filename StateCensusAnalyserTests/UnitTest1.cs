@@ -32,6 +32,26 @@ namespace StateCensusAnalyserTests
             analyser.LoadDataFromCSV();
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void LoadDataFromCSV_ShouldThrowException_WhenDelimiterIsIncorrect()
+        {
+            // Arrange
+            string filePath = "C:\\Users\\princ\\OneDrive\\Desktop\\dotnet\\Day29StateCensus\\Day29StateCensus\\Book2.csv";
+            StateCensusAnalyser analyser = new StateCensusAnalyser(filePath);
+
+            // Act and Assert
+            try
+            {
+                analyser.LoadDataFromCSV(';'); // Use semicolon as delimiter instead of comma
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Caught exception: " + ex.Message);
+                throw;
+            }
+        }
+
 
     }
 }
